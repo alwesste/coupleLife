@@ -1,0 +1,9 @@
+export enum TransactionCategory {
+  RESTAURANT = 'RESTAURANT',
+  COURSES = 'COURSES',
+  LOYER = 'LOYER',
+  TRANSPORT = 'TRANSPORT',
+  SANTE = 'SANTE',
+  LOISIRS = 'LOISIRS',
+  AUTRE = 'AUTRE',
+}

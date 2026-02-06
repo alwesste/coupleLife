@@ -1,0 +1,33 @@
+<h2>Profil de l'utilisateur  : {{userPurchaseDTO?.firstname}}</h2>
+
+
+<div class="table-container">
+
+  <ul class="table-row header">
+    <li>Dates</li>
+    <li>Type d'achat</li>
+    <li>Commentaires</li>
+    <li>Prix</li>
+    <li>Actions</li>
+  </ul>
+
+  @if (userPurchaseDTO) {
+    @for (item of userPurchaseDTO.purchases; track $index) {
+      <ul class="table-row data-row">
+        <li>{{ item.date | date:'dd/MM/yyyy' }}</li>
+        <li>{{ item.purchaseType }}</li>
+        <li>{{ item.comment }}</li>
+        <li>{{ item.amount }} €</li>
+        <li>
+          <button class="btn add" (click)="onAdd(item)">Ajouter</button>
+          <button class="btn edit" (click)="onEdit(item)">Modifier</button>
+          <button class="btn delete" (click)="onDelete(item.id)">Supprimer</button>
+        </li>
+      </ul>
+    }
+  } @else {
+    <p>Chargement des achats...</p>
+  }
+
+  <app-modal #purchseModal (purchaseCreated)="onPurchaseCreated($event)"></app-modal>
+</div>

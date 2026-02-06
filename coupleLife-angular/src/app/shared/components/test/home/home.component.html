@@ -1,0 +1,35 @@
+<!-- step1.component.html -->
+<div class="step-container">
+  <h2>Étape 1/3 - Informations personnelles</h2>
+
+  <form [formGroup]="step1Form" (ngSubmit)="onNext()">
+
+    <div>
+      <label>Nom:</label>
+      <input type="text" formControlName="nom">
+      <div *ngIf="step1Form.get('nom')?.invalid && step1Form.get('nom')?.touched">
+        Le nom est obligatoire
+      </div>
+    </div>
+
+    <div>
+      <label>Prénom:</label>
+      <input type="text" formControlName="prenom">
+      <div *ngIf="step1Form.get('prenom')?.invalid && step1Form.get('prenom')?.touched">
+        Le prénom est obligatoire
+      </div>
+    </div>
+
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email">
+      <div *ngIf="step1Form.get('email')?.invalid && step1Form.get('email')?.touched">
+        Email invalide
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="step1Form.invalid">
+      Suivant →
+    </button>
+  </form>
+</div>

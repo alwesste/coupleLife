@@ -1,0 +1,38 @@
+<div class="step-container">
+  <h2>Étape 3/3 - Confirmation</h2>
+
+  <!-- Récapitulatif des données précédentes -->
+  <div class="summary">
+    <h3>Récapitulatif</h3>
+    <p><strong>Nom:</strong> {{ allFormData.nom }} {{ allFormData.prenom }}</p>
+    <p><strong>Email:</strong> {{ allFormData.email }}</p>
+    <p><strong>Adresse:</strong> {{ allFormData.adresse }}, {{ allFormData.codePostal }} {{ allFormData.ville }}</p>
+  </div>
+
+  <form [formGroup]="step3Form" (ngSubmit)="onSubmit()">
+
+    <div>
+      <label>Téléphone:</label>
+      <input type="tel" formControlName="telephone" placeholder="0612345678">
+      <div *ngIf="step3Form.get('telephone')?.invalid && step3Form.get('telephone')?.touched">
+        Numéro de téléphone invalide
+      </div>
+    </div>
+
+    <div>
+      <label>
+        <input type="checkbox" formControlName="newsletter">
+        Je souhaite recevoir la newsletter
+      </label>
+    </div>
+
+    <div class="button-group">
+      <button type="button" (click)="onPrevious()" [disabled]="isSubmitting">
+        ← Précédent
+      </button>
+      <button type="submit" [disabled]="step3Form.invalid || isSubmitting">
+        {{ isSubmitting ? 'Envoi en cours...' : 'Valider l\'inscription' }}
+      </button>
+    </div>
+  </form>
+</div>

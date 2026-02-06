@@ -1,0 +1,34 @@
+<!-- step2.component.html -->
+<div class="step-container">
+  <h2>Étape 2/3 - Adresse</h2>
+
+  <form [formGroup]="step2Form" (ngSubmit)="onNext()">
+
+    <div>
+      <label>Adresse:</label>
+      <input type="text" formControlName="adresse">
+    </div>
+
+    <div>
+      <label>Ville:</label>
+      <input type="text" formControlName="ville">
+    </div>
+
+    <div>
+      <label>Code Postal:</label>
+      <input type="text" formControlName="codePostal">
+      <div *ngIf="step2Form.get('codePostal')?.invalid && step2Form.get('codePostal')?.touched">
+        Code postal invalide (5 chiffres)
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" (click)="onPrevious()">
+        ← Précédent
+      </button>
+      <button type="submit" [disabled]="step2Form.invalid">
+        Suivant →
+      </button>
+    </div>
+  </form>
+</div>

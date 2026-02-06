@@ -1,0 +1,34 @@
+<dialog #modal class="modal-container">
+  <h2>Ajoute votre achat</h2>
+  <form [formGroup]="purchaseModal" (ngSubmit)="sendPurchase()" class="grid-form">
+
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="date" name="date" id="date" formControlName="date">
+    </div>
+
+    <div class="form-group">
+      <label for="purchaseType">Type d'achat:</label>
+      <select id="purchaseType" formControlName="purchaseType">
+      <option value="" disabled selected>Sélectionnez un type</option>
+      @for (type of purchaseTypes; track type) {
+        <option [value]="type">{{ type }}</option>
+      }
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">Commentaire:</label>
+      <input type="text" name="comment" id="comment" formControlName="comment">
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Prix:</label>
+      <input type="number" name="amount" id="amount" formControlName="amount">
+    </div>
+
+    <div class="actions">
+      <button type="submit">Valider</button>
+    </div>
+  </form>
+</dialog>
